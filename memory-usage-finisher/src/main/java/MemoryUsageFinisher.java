@@ -13,7 +13,8 @@ public class MemoryUsageFinisher {
 
     public static void checkMemoryUsage() {
         double memoryUsage = getSystemMemoryUsage();
-        System.out.println("Uso de memória: " + memoryUsage + "%");
+        System.out.println("""
+                Uso de memória: %.2f%%""".formatted(memoryUsage));
 
         if (memoryUsage > ACCEPTABLE_MEMORY_USAGE_PERCENTAGE) {
             finishHighMemoryProcesses();
@@ -76,7 +77,8 @@ public class MemoryUsageFinisher {
                 String processName = processInfo.getProcessName();
                 double memoryUsage = processInfo.getMemoryUsage();
 
-                System.out.println("Processo: " + processName + ", Uso de memória: " + memoryUsage + " MB");
+                System.out.println("""
+                        Processo: %s , Uso de memória: %.2fMB""".formatted(processName, memoryUsage));
 
                 if (isEssentialProcess(processName)) {
                     System.out.println("Processo essencial encontrado: " + processName + ". Ignorando.");
