@@ -6,9 +6,9 @@ import java.util.regex.Pattern;
 
 public class MemoryUsageFinisher {
 
-    private static final double ACCEPTABLE_MEMORY_USAGE_PERCENTAGE = 80.0; // 80% de uso de memória como limite
+    private static final double ACCEPTABLE_MEMORY_USAGE_PERCENTAGE = 70.0; // 80% de uso de memória como limite
     private static final List<String> ESSENTIAL_PROCESSES = Arrays.asList(
-            "System", "java.exe", "idea64.exe", "smss.exe", "csrss.exe", "wininit.exe", "services.exe", "lsass.exe", "lsm.exe", "svchost.exe", "winlogon.exe", "explorer.exe", "Windows Explorer", "taskhostw.exe", "taskbar.exe", "Taskbar", "shellExperienceHost.exe", "dwm.exe", "Desktop Window Manager", "POWERPNT.EXE", "Microsoft PowerPoint Background Task Handler", "OfficeService.exe"
+            "System", "Discord.exe", "java.exe", "idea64.exe", "smss.exe", "csrss.exe", "wininit.exe", "services.exe", "lsass.exe", "lsm.exe", "svchost.exe", "winlogon.exe", "explorer.exe", "Windows Explorer", "taskhostw.exe", "taskbar.exe", "Taskbar", "shellExperienceHost.exe", "dwm.exe", "Desktop Window Manager", "POWERPNT.EXE", "Microsoft PowerPoint Background Task Handler", "OfficeService.exe"
     ); //Lista de Prioridade ou White List dos processos que não podem ser encerrados
 
     public static void checkMemoryUsage() {
@@ -73,9 +73,9 @@ public class MemoryUsageFinisher {
 
             processes.sort(Comparator.comparingDouble(ProcessInfo::getMemoryUsage).reversed()); // Ordena os processos por uso de memória em ordem decrescente
 
-            for (ProcessInfo processInfo : processes) {
-                String processName = processInfo.getProcessName();
-                double memoryUsage = processInfo.getMemoryUsage();
+            for (int i = 0; i <= 5; i++) {
+                String processName = processes.get(i).getProcessName();
+                double memoryUsage = processes.get(i).getMemoryUsage();
 
                 System.out.println("""
                         Processo: %s , Uso de memória: %.2fMB""".formatted(processName, memoryUsage));
